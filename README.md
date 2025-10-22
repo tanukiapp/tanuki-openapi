@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="https://tanukiapp.xyz/statics/images/logo.png" width=400 />
+  <img src="https://tanukiapp.xyz/statics/images/logo.png" width=400 /><br/>
   <img src="https://www.openapis.org/wp-content/uploads/sites/31/2016/10/OpenAPI_Pantone.png" width="400" />
 </p>
 
