@@ -1,0 +1,63 @@
+openapi: 3.1.0
+info:
+  title: Tanuki API Gateway
+  version: 1.0.0
+  description: API Gateway combining Anime Catalog and Schedule data
+servers:
+  - url: http://localhost:3000
+    description: Local development server
+paths:
+  /anime:
+    get:
+      summary: Get all animes with schedules
+      operationId: getAllAnimeWithSchedules
+      responses:
+        '200':
+          description: List of animes with their schedules
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/AnimeWithScheduleDTO'
+
+  /anime/{id}:
+    get:
+      summary: Get a single anime with its schedules
+      operationId: getAnimeWithScheduleById
+      parameters:
+        - in: path
+          name: id
+          required: true
+          schema:
+            type: integer
+      responses:
+        '200':
+          description: Anime details with schedules
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AnimeWithScheduleDTO'
+        '404':
+          description: Anime not found
+
+components:
+  schemas:
+    AnimeDTO:
+      $ref: '../dtos/AnimeDTO.yaml'
+
+    ScheduleDTO:
+      $ref: '../dtos/ScheduleDTO.yaml'
+
+    AnimeWithScheduleDTO:
+      type: object
+      required:
+        - anime
+        - horarios
+      properties:
+        anime:
+          $ref: '#/components/schemas/AnimeDTO'
+        horarios:
+          type: array
+          items:
+            $ref: '#/components/schemas/ScheduleDTO'
